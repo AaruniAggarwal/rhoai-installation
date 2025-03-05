@@ -27,6 +27,7 @@ fi
 echo "Create ImagecontentSourcePolicy"
 curl -LO https://github.com/red-hat-data-services/setup-rhoai/raw/konflux/konflux/imagepolicy.yaml
 oc create -f imagepolicy.yaml
+oc get imagecontentsourcepolicy -o yaml
 
 echo -e "\n Go to olminstall repository for creating Subscription"
 
