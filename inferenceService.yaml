@@ -1,0 +1,33 @@
+apiVersion: serving.kserve.io/v1beta1
+kind: InferenceService
+metadata:
+  annotations:
+    openshift.io/display-name: Tinyllama
+    serving.knative.openshift.io/enablePassthrough: "true"
+    sidecar.istio.io/inject: "true"
+    sidecar.istio.io/rewriteAppHTTPProbers: "true"
+    serving.kserve.io/deploymentMode: RawDeployment
+  labels:
+    networking.kserve.io/visibility: exposed
+    opendatahub.io/dashboard: "true"
+  name: tinyllama-cli
+spec:
+  predictor:
+    maxReplicas: 1
+    minReplicas: 1
+    serviceAccountName: models-bucket-sa
+    timeout: 600
+    model:
+      modelFormat:
+        name: vLLM
+      name: ""
+      resources:
+        limits:
+          cpu: "8"
+          memory: 16Gi
+        requests:
+          cpu: "1"
+          memory: 8Gi
+      runtime: vllm-runtime-test
+      storageUri: "s3://odh-bucket/models/TinyLlama"
+    volumes: []

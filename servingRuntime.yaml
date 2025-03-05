@@ -1,0 +1,31 @@
+apiVersion: serving.kserve.io/v1alpha1
+kind: ServingRuntime
+metadata:
+  name: vllm-runtime-test
+  annotations:
+    opendatahub.io/apiProtocol: REST
+    openshift.io/display-name: vLLM ServingRuntime for KServe cli test
+  labels:
+    opendatahub.io/dashboard: 'true'
+spec:
+  annotations:
+    prometheus.io/port: '8000'
+    prometheus.io/path: '/metrics'
+  multiModel: false
+  supportedModelFormats:
+    - autoSelect: true
+      name: vLLM
+  containers:
+    - name: kserve-container
+      image: PLACEHOLDER
+      imagePullPolicy: Always
+      args:
+        - '--port=8000'
+        - '--served-model-name={{.Name}}'
+        - '--model=/mnt/models'
+      env:
+        - name: HF_HOME
+          value: /tmp/hf_home
+      ports:
+        - containerPort: 8000
+          protocol: TCP
