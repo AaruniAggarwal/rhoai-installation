@@ -4,6 +4,7 @@
 - Make sure oc cli is installed in your cluster
 - Clone [olminstall](https://gitlab.cee.redhat.com/data-hub/olminstall/) repository  in your WORKSPACE
 - quay.io/rhoai secret should be there in the OCP cluster's pull secret. 
+- Uninstall Openshift AI completely if it is installed
 
 ### Environment Variables
 
