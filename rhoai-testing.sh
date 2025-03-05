@@ -28,20 +28,6 @@ echo "Create ImagecontentSourcePolicy"
 curl -LO https://github.com/red-hat-data-services/setup-rhoai/raw/konflux/konflux/imagepolicy.yaml
 oc create -f imagepolicy.yaml
 
-## Clone setup-rhoai repository
-
-#echo -e "\n Cloning setup-rhoai repository and create imagecontentsourcepolicy"
-
-#git clone -b konflux --single-branch https://github.com/red-hat-data-services/setup-rhoai.git && cd setup-rhoai/
-
-#oc create -f konflux/imagepolicy.yaml
-
-#sed -i 's|quay.io/rhoai/rhoai-fbc-fragment:rhoai-2.16@sha256:bc9b09e5a70c03d92c7234fe207f957d09392a0c915e5ec5bb9b41f08505ff97|'$RHOAI_IMAGE'|g' konflux/catalogsource.yaml
-
-#echo -e "\n Executing setup_rhoai.sh script"
-
-#./setup_rhoai.sh 2>&1 | tee $WORKSPACE/setup-rhoai.log
-
 echo -e "\n Go to olminstall repository for creating Subscription"
 
 cd $WORKSPACE/olminstall
