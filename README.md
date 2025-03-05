@@ -7,6 +7,8 @@
 
 ### Environment Variables
 
+Make sure to export following variables before executing **rhoai-testing.sh** script.
+
 Variable | Explanation
 -------- | -------- 
 RHOAI_IMAGE | RH Openshift AI build that needs to be deployed
